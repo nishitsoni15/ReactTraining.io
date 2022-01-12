@@ -9,7 +9,7 @@ const Router = (props) => {
         <Routes>
         <Route exact path='/' element={< Dashboard />}/>
         <Route exact path='/About' element={< AboutUsPage passingData={props.aboutUsData}/>}/>
-        {/* <Route exact path='/Contact' element={< Contact />}/> */}
+       
         <Route exact path='/login' element={<Login/>}/>
         <Route exact path='/render' element={<RenderLogin/>}/>
         </Routes>
