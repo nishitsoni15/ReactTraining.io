@@ -7,11 +7,11 @@ const Router = (props) => {
     return(
         <BrowserRouter>
         <Routes>
-        {/* <Route exact path='/' element={< Dashboard />}></Route>
-        <Route exact path='/About' element={< AboutUsPage passingData={props.aboutUsData}/>}></Route>
-        <Route exact path='/Contact' element={< Contact />}></Route> */}
-        <Route exact path='/' element={<Login/>}></Route>
-        <Route exact path='/render' element={<RenderLogin/>}></Route>
+        <Route exact path='/' element={< Dashboard />}/>
+        <Route exact path='/About' element={< AboutUsPage passingData={props.aboutUsData}/>}/>
+        {/* <Route exact path='/Contact' element={< Contact />}/> */}
+        <Route exact path='/login' element={<Login/>}/>
+        <Route exact path='/render' element={<RenderLogin/>}/>
         </Routes>
         </BrowserRouter>
     )
