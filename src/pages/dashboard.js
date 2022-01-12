@@ -1,4 +1,4 @@
-import { Header } from "../modules/index";
+import { Header ,CountAuto } from "../modules/index";
 import { Button, Counter } from "../components/index";
 import react from "react";
 
@@ -77,7 +77,9 @@ class Dashboard extends react.Component{
              <Button  buttonText = "My Primary" buttonClass = "blue" textColor = "white"/>
              <Button  buttonText = "My Secondary" buttonClass = "red" textColor = "white"/>
             <Button  buttonText = "My Ternary" buttonClass = "black" textColor = "white"/>
-          
+            
+            <br/><br />
+            <CountAuto/>
             </>
         )
     }
