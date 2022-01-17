@@ -1,6 +1,8 @@
-import { Header } from "../modules/index";
-import { Button, Counter } from "../components/index";
+import { Header ,CountAuto } from "../modules/index";
+import { ButtonComponent, Counter } from "../components/index";
 import react from "react";
+import { useNavigate } from 'react-router-dom';
+
 
 
 // const Dashboard = () => {
@@ -22,6 +24,7 @@ import react from "react";
 // export default Dashboard;
 
 class Dashboard extends react.Component{
+    navigate = useNavigate()
     constructor(){
         super()
         this.state={
@@ -58,6 +61,8 @@ class Dashboard extends react.Component{
            count:0
        })
     }
+
+
     render(){
     
         return(
@@ -73,12 +78,17 @@ class Dashboard extends react.Component{
             <span>{this.state.count}</span>
 
             <br/><br/>
-             <Button  buttonText = "My Button" buttonClass = "green" textColor = "white"/>
-             <Button  buttonText = "My Primary" buttonClass = "blue" textColor = "white"/>
-             <Button  buttonText = "My Secondary" buttonClass = "red" textColor = "white"/>
-            <Button  buttonText = "My Ternary" buttonClass = "black" textColor = "white"/>
-          
+             <ButtonComponent  buttonText = "My Button" buttonClass = "green" textColor = "white"/>
+             <ButtonComponent  buttonText = "My Primary" buttonClass = "blue" textColor = "white"/>
+             <ButtonComponent  buttonText = "My Secondary" buttonClass = "red" textColor = "white"/>
+            <ButtonComponent  buttonText = "My Ternary" buttonClass = "black" textColor = "white"/>
+            
+            <br/><br />
+            <CountAuto/>
+
+         
             </>
+
         )
     }
 }
