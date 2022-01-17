@@ -3,7 +3,7 @@ import { useLocation } from "react-router";
 
 const RenderLogin = () => {
     const location = useLocation()
-    console.log(location)
+ 
     let locateData = location.state.data
     return(
         <>
