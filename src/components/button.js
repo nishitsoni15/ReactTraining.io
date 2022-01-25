@@ -1,6 +1,6 @@
 import { ButtonComp1,ButtonComp2} from "./styled";
 
-const Button = (props) => {
+const ButtonComponent = (props) => {
     
     return(
         <div>
@@ -9,4 +9,4 @@ const Button = (props) => {
     )
 }
 
-export default Button;
+export default ButtonComponent;
