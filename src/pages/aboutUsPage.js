@@ -1,11 +1,13 @@
 import { Header, ImageBackground, Img, ParaBackground, H1 ,HeaderPara ,HeaderParaWhite , H2, IconDiv, IconDivPara, MainDiv, ImgArrow, Ul,Li,A,RightMain,ImgIconDiv,HeadingMainDiv,ParaRightMain,FirstA,FirstLi} from "../components/styled";
-
+import { useContext  } from "react";
+import { ContextText } from "../components/context-text";
 
 const AboutUsPage = (props) => {
-    
+    const aboutTheme = useContext(ContextText);
+        console.log(aboutTheme)
     return(
         <div>
-        <Header>
+        <Header style={aboutTheme}>
             <ImageBackground>
                 <Img src={props.passingData.image}/>
             </ImageBackground>
