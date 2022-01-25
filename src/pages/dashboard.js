@@ -5,26 +5,8 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-// const Dashboard = () => {
-
-
-//     return(
-//         <div>
-//             <Header/>
-//             {/* <Counter Text="Counter Button"/> */}
-//             {/* <Button  buttonText = "My Button" buttonClass = "varient"/>
-//             <Button  buttonText = "My Primary" buttonClass = "varient1"/>
-//             <Button  buttonText = "My Secondary" buttonClass = "varient2"/>
-//             <Button  buttonText = "My Ternary" buttonClass = "varient3"/> */}
-//             <h1>Welcome to Dashboard</h1>
-//         </div>
-//     )
-// }
-
-// export default Dashboard;
-
 class Dashboard extends react.Component{
-    navigate = useNavigate()
+    // navigate = useNavigate()
     constructor(){
         super()
         this.state={
@@ -86,7 +68,8 @@ class Dashboard extends react.Component{
             <br/><br />
             <CountAuto/>
 
-         
+         <br></br>
+    
             </>
 
         )

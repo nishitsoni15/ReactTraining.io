@@ -10,8 +10,9 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import { useState } from 'react';
+import { Header } from '../modules/index';
 
-const ModalPage = () => {
+const WelcomePage = () => {
 
     const [open, setOpen] = React.useState(false);
 
@@ -36,6 +37,7 @@ const handleSubmit = (event) => {
 }
     return(
         <>
+        <Header/>
            <Button variant="outlined" onClick={handleClickOpen}>
         Open form dialog
       </Button>
@@ -108,4 +110,4 @@ const handleSubmit = (event) => {
     )
 }
 
-export default ModalPage;
+export default WelcomePage;

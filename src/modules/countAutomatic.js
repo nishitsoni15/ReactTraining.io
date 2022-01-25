@@ -6,15 +6,17 @@ const[count,setCount] = useState(0);
 
     const countSub = () => {
         let count = 0
-       const countTime = setInterval(() => {
-           if(count < 20){
-               setCount(count = count + 1)
-           }else{
-                setCount(count = 0)
-               clearInterval(countTime)
+    setInterval(() => {
+           if(count < 5){
+               setCount(count = count + 1)   
            }
-          
+           else if(count > 0){
+               console.log(count)
+            setCount(count = count - 1)  
+            console.log(count)
+           }
        },1000)
+       
     }
 
     
