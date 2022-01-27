@@ -1,8 +1,12 @@
-
+import { useState } from "react";
+import { ContextText, themes } from "./components/context-text";
+import { AboutUsPage, Dashboard } from "./pages";
 import  Router  from "./router";
 
-
 function App() {
+
+const[color] = useState(themes.dark)
+
 const data = {
   image:"./images/unnamed.png",
   headerOne:"Fotis Karayannopoulos",
@@ -22,10 +26,11 @@ const data = {
   para2:"The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham."
 }
   return (
+    <ContextText.Provider value={color}>
     <div className="App">
-      <Router aboutUsData = {data}/>
-      
+      <Router aboutUsData = {data} />
     </div>
+    </ContextText.Provider>
   );
 }
 
