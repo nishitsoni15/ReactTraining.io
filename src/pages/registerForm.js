@@ -4,42 +4,60 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router';
+import { validUsername, validEmail, validPassword} from '../components/Regex';
 
 
 const RegisterFormPage = () => {
   const navigate = useNavigate();
-  const[userName,setUserName] = useState('');
-  const[email,setEmail] = useState('');
-  const[password,setPassword] = useState('');
-  // const[allData,setAllData] = React.useState([]);
+  const [values,setValues] = useState({
+    username : "",
+    email : "",
+    password : ""
+  });
+  const [nameErr,setNameErr] = useState(false);
+  const [emailErr,setEmailErr] = useState(false);
+  const [passwordErr,setPasswordErr] = useState(false);
   const getData = "data passed successfully!"
-
-  const login = (e) => {
-    e.preventDefault()
-    navigate('/loginPrivate');
+  const handleChange = (e) => {
+    setValues({
+      ...values,
+      [e.target.name] : e.target.value,
+    })
   }
+  const handleSubmit = (e) => {
+    e.preventDefault();  
 
-  const registerData = (e) => {
-    e.preventDefault();
-    const newData = {username:userName,email:email,password:password}
-    // setAllData([...allData,newData])
-    console.log(newData)
+    if(!validUsername.test(values.username)){
+        setNameErr(true);
+    }
+    if(!validEmail.test(values.email)){
+      setEmailErr(true);
+    }
+    if(!validPassword.test(values.password)){
+      setPasswordErr(true);
+    }
+    if (nameErr == true && emailErr == true && passwordErr == true){
+      navigate('/loginPrivate',{state:{getData}});
+    }
     let newVal = localStorage.getItem('list')
     if(newVal == null){
       newVal = []
       console.log('newval type',typeof(newVal))
-      newVal.push(newData);
+      newVal.push(values);
       localStorage.setItem('list',JSON.stringify(newVal));
     }else{
       let existVal =  JSON.parse(newVal);
       console.log('exist val',typeof(existVal));
-      existVal.push(newData);
+      existVal.push(values);
       console.log('exist val push',existVal)
       localStorage.setItem('list',JSON.stringify(existVal));
     }
-    navigate('/loginPrivate',{state:{getData}});
+   
   }
-
+  const login = (e) => {
+    e.preventDefault()
+    navigate('/loginPrivate');
+  }
     return(
         <>
          <Box
@@ -51,10 +69,13 @@ const RegisterFormPage = () => {
       }}
     >
       <h1>Welcome to Sign up Page:</h1>
-      <TextField type="text" label={'Name="username"'} id="margin-normal" margin="normal" value={userName}  onChange={(e) => setUserName(e.target.value)}/>
-      <TextField type="email" label={'Email="email"'} id="margin-normal" margin="normal" value={email} onChange={(e) => setEmail(e.target.value)}/>
-      <TextField type="password" label={'Password="password"'} id="margin-normal" margin="normal" value={password} onChange={(e) => setPassword(e.target.value)}/>
-      <Button variant="contained" onClick={registerData}>Register</Button>
+      <TextField type="text" label={'Name="username"'} id="margin-normal" name="username" margin="normal" value={values.username}  onChange={handleChange}/>
+      {nameErr && <p>usename is invalid!</p>}
+      <TextField type="email" label={'Email="email"'} id="margin-normal" name="email" margin="normal"  value={values.email} onChange={handleChange}/>
+      {emailErr && <p>email is invalid!</p>}
+      <TextField type="password" label={'Password="password"'} id="margin-normal" name="password" margin="normal" value={values.password} onChange={handleChange}/>
+      {passwordErr && <p>password is invalid!</p>}
+      <Button variant="contained" onClick={handleSubmit}>Register</Button>
       <h2>OR</h2>
       <Button variant="contained" onClick={(e) => login(e)}>Log In</Button>
     </Box>
