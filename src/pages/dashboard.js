@@ -2,7 +2,7 @@ import { Header ,CountAuto } from "../modules/index";
 import { ButtonComponent, Counter } from "../components/index";
 import react from "react";
 import { useNavigate } from 'react-router-dom';
-
+import { GetApi } from '../components/index';
 
 
 class Dashboard extends react.Component{
@@ -66,10 +66,9 @@ class Dashboard extends react.Component{
             <ButtonComponent  buttonText = "My Ternary" buttonClass = "black" textColor = "white"/>
             
             <br/><br />
-            <CountAuto/>
-
-         <br></br>
-    
+            {/* <CountAuto/> */}
+            <br></br>
+            <GetApi />
             </>
 
         )
