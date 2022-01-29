@@ -1,27 +1,12 @@
-import { Header } from "../modules/index";
-import { Button, Counter } from "../components/index";
+import { Header ,CountAuto } from "../modules/index";
+import { ButtonComponent, Counter } from "../components/index";
 import react from "react";
+import { useNavigate } from 'react-router-dom';
+import { GetApi } from '../components/index';
 
-
-// const Dashboard = () => {
-
-
-//     return(
-//         <div>
-//             <Header/>
-//             {/* <Counter Text="Counter Button"/> */}
-//             {/* <Button  buttonText = "My Button" buttonClass = "varient"/>
-//             <Button  buttonText = "My Primary" buttonClass = "varient1"/>
-//             <Button  buttonText = "My Secondary" buttonClass = "varient2"/>
-//             <Button  buttonText = "My Ternary" buttonClass = "varient3"/> */}
-//             <h1>Welcome to Dashboard</h1>
-//         </div>
-//     )
-// }
-
-// export default Dashboard;
 
 class Dashboard extends react.Component{
+    // navigate = useNavigate()
     constructor(){
         super()
         this.state={
@@ -58,6 +43,8 @@ class Dashboard extends react.Component{
            count:0
        })
     }
+
+
     render(){
     
         return(
@@ -73,12 +60,17 @@ class Dashboard extends react.Component{
             <span>{this.state.count}</span>
 
             <br/><br/>
-             <Button  buttonText = "My Button" buttonClass = "green" textColor = "white"/>
-             <Button  buttonText = "My Primary" buttonClass = "blue" textColor = "white"/>
-             <Button  buttonText = "My Secondary" buttonClass = "red" textColor = "white"/>
-            <Button  buttonText = "My Ternary" buttonClass = "black" textColor = "white"/>
-          
+             <ButtonComponent  buttonText = "My Button" buttonClass = "green" textColor = "white"/>
+             <ButtonComponent  buttonText = "My Primary" buttonClass = "blue" textColor = "white"/>
+             <ButtonComponent  buttonText = "My Secondary" buttonClass = "red" textColor = "white"/>
+            <ButtonComponent  buttonText = "My Ternary" buttonClass = "black" textColor = "white"/>
+            
+            <br/><br />
+            {/* <CountAuto/> */}
+            <br></br>
+            <GetApi />
             </>
+
         )
     }
 }
