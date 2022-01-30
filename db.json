@@ -1,34 +1,40 @@
 {
-    "Profiles":[
-{
-    "id": 1,
-    "name": "Nishit",
-    "place": "Surat",
-    "contact": 8866739445
-},
-{
-    "id": 2,
-    "name": "Abhi",
-    "place": "USA",
-    "contact": 3242523556
-},
-{
-    "id": 3,
-    "name": "Preethi",
-    "place": "Shahabad",
-    "contact": 3434555266
-},
-{
-    "id": 4,
-    "name": "Shantanu",
-    "place": "Pune",
-    "contact": 4256626754
-},
-{
-    "id": 5,
-    "name": "Kashi",
-    "place": "Narhe",
-    "contact": 5443545634
-}
-]
+  "Profiles": [
+    {
+      "id": 1,
+      "username": "Nishit",
+      "place": "Surat",
+      "contact": 8866739445
+    },
+    {
+      "id": 2,
+      "username": "Abhi Soni",
+      "place": "USA MN",
+      "contact": "888888"
+    },
+    {
+      "id": 3,
+      "username": "Preethi",
+      "place": "Shahabad",
+      "contact": 3434555266
+    },
+    {
+      "id": 4,
+      "username": "ShantanuKulkarni",
+      "place": "pune",
+      "contact": "7888878"
+    },
+    {
+      "id": 5,
+      "username": "KashiNath",
+      "place": "pune",
+      "contact": "676776676767"
+    },
+    {
+      "id": "6",
+      "username": " Nikhil",
+      "place": "Nagpur",
+      "contact": "88888"
+    }
+  ]
 }
