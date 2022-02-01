@@ -12,6 +12,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import axios from "axios";
+import { validContact,validPlace,validUsername } from "../components/Regex";
 
 
 class Dashboard extends react.Component{
@@ -25,7 +26,10 @@ class Dashboard extends react.Component{
             id:'',
             username:'',
             place:'',
-            contact:''
+            contact:'',
+            usernameError:false,
+            placeError:false,
+            contactError:false
         };
     }
 
@@ -81,9 +85,8 @@ class Dashboard extends react.Component{
         })
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-            axios.post('http://localhost:3001/Profiles',this.state)
+    getData = () => {
+        axios.post('http://localhost:3001/Profiles',this.state)
         .then((response)=>{
         console.log(response);
         })
@@ -93,6 +96,31 @@ class Dashboard extends react.Component{
         this.setState({
             show:false
         })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+
+        if(!validUsername.test(this.state.username)){
+            this.setState({
+                usernameError:true
+            });
+        }
+        if(!validPlace.test(this.state.place)){
+            this.setState({
+                placeError:true
+            });
+        }
+        if(!validContact.test(this.state.contact)){
+            this.setState({
+                contactError:true
+            });
+        }
+
+        if(this.state.usernameError == true && this.state.placeError == true && this.state.contactError == true){   
+          this.getData();
+        }
+     
     }
 
     render(){
@@ -143,6 +171,7 @@ class Dashboard extends react.Component{
             value={this.state.username}
             onChange={this.handleChange}
           />
+           {this.state.usernameError && <p>usename is invalid!</p>}
            <TextField
             autoFocus
             margin="dense"
@@ -154,6 +183,7 @@ class Dashboard extends react.Component{
             value={this.state.place}
             onChange={this.handleChange}
           />
+           {this.state.placeError && <p>place is invalid!</p>}
            <TextField
             autoFocus
             margin="dense"
@@ -165,6 +195,7 @@ class Dashboard extends react.Component{
             value={this.state.contact}
             onChange={this.handleChange}
           />
+           {this.state.contactError && <p>contact is invalid!</p>}
         </DialogContent>
         <DialogActions>
           <Button onClick={() => this.handleClose()}>Cancel</Button>
