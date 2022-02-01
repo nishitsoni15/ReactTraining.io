@@ -1,5 +1,7 @@
-import { Dashboard , AboutUsPage, Login,RenderLogin} from "./pages/index";
+import { Dashboard , AboutUsPage, Login,RenderLogin,WelcomePage,Contact,LoginPrivatePage, RegisterFormPage} from "./pages/index";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { PrivateRoute } from './components/index';
+
 
 
 const Router = (props) => {
@@ -7,9 +9,12 @@ const Router = (props) => {
     return(
         <BrowserRouter>
         <Routes>
-        <Route exact path='/' element={< Dashboard />}/>
+        <Route exact path='/' element={< RegisterFormPage />}/>
+        <Route exact path='/loginPrivate' element={< LoginPrivatePage />}/>
+        <Route exact path='/welcomePage' element={< PrivateRoute >< WelcomePage /></ PrivateRoute >}/>
+        <Route exact path='/dashboard' element={< Dashboard />}/>
         <Route exact path='/About' element={< AboutUsPage passingData={props.aboutUsData}/>}/>
-        {/* <Route exact path='/Contact' element={< Contact />}/> */}
+        <Route exact path='/contact' element={<Contact/>}/>
         <Route exact path='/login' element={<Login/>}/>
         <Route exact path='/render' element={<RenderLogin/>}/>
         </Routes>
