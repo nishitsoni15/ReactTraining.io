@@ -1,5 +1,4 @@
-import { Header ,CountAuto } from "../modules/index";
-import { ButtonComponent, Counter } from "../components/index";
+import { Header } from "../modules/index";
 import react from "react";
 import { useNavigate } from 'react-router-dom';
 import { GetApi } from '../components/index';
@@ -12,11 +11,10 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import axios from "axios";
-import { validContact,validPlace,validUsername } from "../components/Regex";
+import { validContact,validEmail,validUsername } from "../components/Regex";
 
 
 class Dashboard extends react.Component{
-    // navigate = useNavigate()
     constructor(props){
         super(props)
         this.state={
@@ -25,10 +23,10 @@ class Dashboard extends react.Component{
             show:false,
             id:'',
             username:'',
-            place:'',
+            email:'',
             contact:'',
             usernameError:false,
-            placeError:false,
+            emailError:false,
             contactError:false
         };
     }
@@ -47,16 +45,7 @@ class Dashboard extends react.Component{
      })
     }
   
-    // noDisplay(){
-
-    //     let count = localStorage.getItem("count")==null?1:localStorage.getItem("count");
-    //     count=Number(count)+1;
-    //     localStorage.setItem("count", count);
-    //     document.getElementById('no').innerHTML = count;
-    //   }
-    // componentDidMount(){
-    //     window.addEventListener('load',this.noDisplay())
-    // }
+   
     Reset(){
        this.setState({
            count:0
@@ -80,35 +69,35 @@ class Dashboard extends react.Component{
         this.setState({
          [e.target.id]:e.target.value,
          [e.target.username]:e.target.value,
-         [e.target.place]:e.target.value,
+         [e.target.email]:e.target.value,
          [e.target.contact]:e.target.value
         })
     }
 
-    getData = () => {
-        axios.post('http://localhost:3001/Profiles',this.state)
-        .then((response)=>{
-        console.log(response);
-        })
-        .catch((error) => {
-            console.log(error);
-        })
+    componentDidUpdate(){
+       this.getData = () => {
+            axios.post('http://localhost:3001/Profiles',this.state)
+            .then((response)=>{
+            console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
         this.setState({
             show:false
         })
     }
-
-    handleSubmit = (e) => {
-        e.preventDefault();
-
+    }
+   
+   handleSubmit = () => {
         if(!validUsername.test(this.state.username)){
             this.setState({
                 usernameError:true
             });
         }
-        if(!validPlace.test(this.state.place)){
+        if(!validEmail.test(this.state.email)){
             this.setState({
-                placeError:true
+                emailError:true
             });
         }
         if(!validContact.test(this.state.contact)){
@@ -116,35 +105,31 @@ class Dashboard extends react.Component{
                 contactError:true
             });
         }
-
-        if(this.state.usernameError == true && this.state.placeError == true && this.state.contactError == true){   
+        if(this.state.usernameError == true && this.state.emailError == true && this.state.contactError == true){   
           this.getData();
         }
-     
+        this.setState({
+            id:'',
+            username:'',
+            email:'',
+            contact:'',
+        })
     }
+    
+    
 
     render(){
         return(
             <>
             <Header/>
-            <h1>Welcome to Dashboard!</h1>
+            {/* <h1>Welcome to Dashboard!</h1>
             <div>{this.state.text}</div>
-            <Counter Text="Hello I am Nishit Soni"/>
             <button onClick={() =>  this.IncrementFunc()}>Increment</button>
             <button onClick={() => this.DecrementFunc()}>Decrement</button>
             <button onClick={() => this.Reset()}>Reset</button>
-            <span>{this.state.count}</span>
-
-            <br/><br/>
-             <ButtonComponent  buttonText = "My Button" buttonClass = "green" textColor = "white"/>
-             <ButtonComponent  buttonText = "My Primary" buttonClass = "blue" textColor = "white"/>
-             <ButtonComponent  buttonText = "My Secondary" buttonClass = "red" textColor = "white"/>
-            <ButtonComponent  buttonText = "My Ternary" buttonClass = "black" textColor = "white"/>
-            
-            <br/><br />
-            {/* <CountAuto/> */}
+            <span>{this.state.count}</span> */}
             <br></br>
-            <Button variant="contained" onClick={this.createProfile}>Create Profile</Button>
+            <Button variant="contained" onClick={this.createProfile} style={{textAlign:"right"}} ml={5}>Create Profile</Button>
             <br/><br />
             <Dialog open={this.state.show} onClose={this.handleClose}>
         <DialogTitle>Add Profile</DialogTitle>
@@ -175,15 +160,15 @@ class Dashboard extends react.Component{
            <TextField
             autoFocus
             margin="dense"
-            id="place"
-            label="Place"
-            type="text"
+            id="email"
+            label="Email"
+            type="email"
             fullWidth
             variant="standard"
-            value={this.state.place}
+            value={this.state.email}
             onChange={this.handleChange}
           />
-           {this.state.placeError && <p>place is invalid!</p>}
+           {this.state.emailError && <p>Email is invalid!</p>}
            <TextField
             autoFocus
             margin="dense"

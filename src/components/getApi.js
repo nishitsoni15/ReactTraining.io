@@ -17,6 +17,9 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { getByPlaceholderText } from '@testing-library/dom';
 import { ListItem } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import  { tableCellClasses } from '@mui/material/TableCell';
+
 
 const GetApi = () => {
     const[newData,setNewData] = useState([]);
@@ -104,35 +107,51 @@ const GetApi = () => {
         setOpen(false);
     }
       
+    const StyledTableCell = styled(TableCell)(({ theme }) => ({
+      [`&.${tableCellClasses.head}`]: {
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white,
+      },
+      [`&.${tableCellClasses.body}`]: {
+        fontSize: 14,
+      },
+    }));
+
+    const StyledTableRow = styled(TableRow)(({ theme }) => ({
+      '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.action.hover,
+      },
+      // hide last border
+      '&:last-child td, &:last-child th': {
+        border: 0,
+      },
+    }));
     return(
         <>
       <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <Table sx={{ minWidth: 700 }} aria-label="customized table">
               <TableHead>
                 <TableRow>
-                  <TableCell align="center">id</TableCell>
-                  <TableCell align="center">username</TableCell>
-                  <TableCell align="center">place</TableCell>
-                  <TableCell align="center">contact</TableCell>
-                  <TableCell align="center">actions</TableCell>
+                <StyledTableCell align="center">Id</StyledTableCell>
+            <StyledTableCell align="center">Username</StyledTableCell>
+            <StyledTableCell align="center">Email</StyledTableCell>
+            <StyledTableCell align="center">Contact</StyledTableCell>
+            <StyledTableCell align="center">Actions</StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {newData.map((row) => (
-                  <TableRow
-                    key={row.username}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  >
-                    {/* <TableCell component="th" scope="row">
-                      {row.name}
-                    </TableCell> */}
-                    <TableCell align="center">{row.id}</TableCell>
-                    <TableCell align="center">{row.username}</TableCell>
-                    <TableCell align="center">{row.place}</TableCell>
-                    <TableCell align="center">{row.contact}</TableCell>
-                    <TableCell align="center">{<Button variant="contained" onClick={(e) => createModal(row.id,e)}>Edit</Button> } &nbsp;{<Button variant="outlined" onClick={(e) => deleteEntry(row.id,e)}>Delete</Button>}</TableCell>
-                  </TableRow>
-                ))}
+              {newData.map((row) => (
+  <StyledTableRow key={row.name}>
+    <StyledTableCell align="center">{row.id}</StyledTableCell>
+    <StyledTableCell align="center">{row.username}</StyledTableCell>
+    <StyledTableCell align="center">{row.email}</StyledTableCell>
+    <StyledTableCell align="center">{row.contact}</StyledTableCell>
+    <StyledTableCell align="center">{<Button variant="contained" onClick={(e) => createModal(row.id,e)}>Edit</Button> } &nbsp;{<Button variant="outlined" onClick={(e) => deleteEntry(row.id,e)}>Delete</Button>}</StyledTableCell>
+  </StyledTableRow>
+))}
+
+
+                
               </TableBody>
             </Table>
           </TableContainer>

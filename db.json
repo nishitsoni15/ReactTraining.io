@@ -1,57 +1,47 @@
 {
   "Profiles": [
     {
+      "id": 1,
+      "username": "Nishit",
+      "email":"soninishit15@gmail.com",
+      "contact": 8866739445
+    },
+    {
       "id": 2,
-      "username": "Abhi Soni",
-      "place": "USA MN",
-      "contact": "888888"
+      "username": "Ravi",
+      "email":"soninishit15@gmail.com",
+      "contact": 8866739445
     },
     {
       "id": 3,
-      "username": "Preethi",
-      "place": "Shahabad",
-      "contact": 3434555266
+      "username": "Shubham",
+      "email":"soninishit15@gmail.com",
+      "contact": 8866739445
     },
     {
       "id": 4,
-      "username": "ShantanuKulkarni",
-      "place": "pune",
-      "contact": "7888878"
+      "username": "Shivam",
+      "email":"soninishit15@gmail.com",
+      "contact": 8866739445
     },
     {
       "id": 5,
-      "username": "KashiNath",
-      "place": "pune",
-      "contact": "676776676767"
+      "username": "Abhi",
+      "email":"soninishit15@gmail.com",
+      "contact": 8866739445
     },
     {
+      "text": "count",
+      "count": 0,
+      "show": true,
       "id": "6",
-      "username": " Nikhil",
-      "place": "Nagpur",
-      "contact": "88888"
-    },
-    {
-      "text": "count",
-      "count": 0,
-      "show": true,
-      "id": "7",
-      "username": "Nishit",
-      "place": "surat",
-      "contact": "8980808090",
-      "undefined": "8980808090"
-    },
-    {
-      "text": "count",
-      "count": 0,
-      "show": true,
-      "id": "8",
-      "username": "Dipak soni",
-      "place": "Vadodara",
-      "contact": "7359010990",
+      "username": "Abhi Soni",
+      "email":"soninishit15@gmail.com",
+      "contact": "687878987988",
       "usernameError": true,
       "placeError": true,
       "contactError": true,
-      "undefined": "7359010990"
+      "undefined": "687878987988"
     }
   ]
 }
