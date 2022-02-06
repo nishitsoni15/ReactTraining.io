@@ -24,6 +24,17 @@ const RegisterFormPage = () => {
       [e.target.name] : e.target.value,
     })
   }
+  const handleUsernameFocus = () => {
+    setNameErr(false)
+  }
+
+  const handleEmailFocus = () => {
+    setEmailErr(false)
+  }
+
+  const handlePasswordFocus = () => {
+    setPasswordErr(false)
+  }
   const handleSubmit = (e) => {
     e.preventDefault();  
 
@@ -69,12 +80,12 @@ const RegisterFormPage = () => {
       }}
     >
       <h1>Welcome to Sign up Page:</h1>
-      <TextField type="text" label={'Name="username"'} id="margin-normal" name="username" margin="normal" value={values.username}  onChange={handleChange}/>
-      {nameErr && <p>usename is invalid!</p>}
-      <TextField type="email" label={'Email="email"'} id="margin-normal" name="email" margin="normal"  value={values.email} onChange={handleChange}/>
-      {emailErr && <p>email is invalid!</p>}
-      <TextField type="password" label={'Password="password"'} id="margin-normal" name="password" margin="normal" value={values.password} onChange={handleChange}/>
-      {passwordErr && <p>password is invalid!</p>}
+      <TextField type="text" label={'Name="username"'} onFocus={handleUsernameFocus} id="margin-normal" name="username" margin="normal" value={values.username}  onChange={handleChange}/>
+      {nameErr ? <p>usename is invalid!</p> : <p></p>}
+      <TextField type="email" label={'Email="email"'} onFocus={handleEmailFocus}  id="margin-normal" name="email" margin="normal"  value={values.email} onChange={handleChange}/>
+      {emailErr ? <p>email is invalid!</p> : <p></p>}
+      <TextField type="password" label={'Password="password"'} onFocus={handlePasswordFocus}  id="margin-normal" name="password" margin="normal" value={values.password} onChange={handleChange}/>
+      {passwordErr ? <p>password is invalid!</p> : <p></p>}
       <Button variant="contained" onClick={handleSubmit}>Register</Button>
       <h2>OR</h2>
       <Button variant="contained" onClick={(e) => login(e)}>Log In</Button>

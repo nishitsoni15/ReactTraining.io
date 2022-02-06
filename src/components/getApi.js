@@ -19,6 +19,7 @@ import { getByPlaceholderText } from '@testing-library/dom';
 import { ListItem } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import  { tableCellClasses } from '@mui/material/TableCell';
+import { validId, validUsername, validEmail, validContact } from './Regex';
 
 
 const GetApi = () => {
@@ -26,8 +27,17 @@ const GetApi = () => {
     const[open,setOpen] = useState(false);
     const[id,setId] = useState('');
     const[username,setUserName] = useState('');
-    const[place,setPlace] = useState('');
+    const[email,setEmail] = useState('');
     const[contact,setContact] = useState('');
+
+    const initError = {
+      idError:false,
+      usernameError:false,
+      emailError:false,
+      contactError:false
+    }
+
+    const[error,setError] = useState({initError});
     useEffect(() =>{
         getData();
     },[])
@@ -58,16 +68,16 @@ const GetApi = () => {
       ];
     
 
-      const createModal = (id,e) => {
-          e.preventDefault();
+      const createModal = (id) => {
           setOpen(true)
         console.log('same value', newData[id-1])
           let item = newData[id-1]
           setId(item.id)
         setUserName(item.username)
-        setPlace(item.place)
+        setEmail(item.email)
         setContact(item.contact)
       }
+
 
       const handleClose = () => {
           setOpen(false)
@@ -86,7 +96,30 @@ const GetApi = () => {
   }
 
     const editUSer = () => {
-        let item1 = {id,username,place,contact}
+      // if(!validId.test(id)){
+      //   setError({
+      //     idError:true
+      //   })
+      // }
+      // if(!validUsername.test(username)){
+      //   setError({
+      //     usernameError:true
+      //   })
+      // }
+      // if(!validEmail.test(email)){
+      //   setError({
+      //     emailError:true
+      //   })
+      // }
+      // if(!validContact.test(contact)){
+      //   setError({
+      //     contactError:true
+      //   })
+      // }
+      // if(error.initError.idError == true && error.initError.usernameError == true && error.initError.emailError == true && error.initError.contactError == true){
+      //   getData();
+      // }
+        let item1 = {id,username,email,contact}
         fetch(`http://localhost:3001/Profiles/${id}`,{
             method:'PUT',
             headers:{
@@ -103,8 +136,8 @@ const GetApi = () => {
         .catch((error) => {
             console.log(error)
         })  
-        getData();  
-        setOpen(false);
+       getData();
+        setOpen(false)
     }
       
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -169,6 +202,7 @@ const GetApi = () => {
             value={id}
             onChange={(e) => setId(e.target.value)}
           />
+          {error.initError.idError && <p> id is invalid! </p>}
            <TextField
             autoFocus
             margin="dense"
@@ -180,17 +214,19 @@ const GetApi = () => {
             value={username}
             onChange={(e) => setUserName(e.target.value)}
           />
+          {error.initError.usernameError && <p> id is invalid! </p>}
            <TextField
             autoFocus
             margin="dense"
-            id="place"
-            label="Place"
-            type="text"
+            id="email"
+            label="Email"
+            type="email"
             fullWidth
             variant="standard"
-            value={place}
-            onChange={(e) => setPlace(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
+          {error.initError.emailError && <p> id is invalid! </p>}
            <TextField
             autoFocus
             margin="dense"
@@ -202,6 +238,7 @@ const GetApi = () => {
             value={contact}
             onChange={(e) => setContact(e.target.value)}
           />
+          {error.initError.contactError && <p> id is invalid! </p>}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

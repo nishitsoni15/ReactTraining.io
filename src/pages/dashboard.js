@@ -11,7 +11,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import axios from "axios";
-import { validContact,validEmail,validUsername } from "../components/Regex";
+import { validContact,validEmail,validId,validUsername } from "../components/Regex";
+import { FlashOnRounded } from "@material-ui/icons";
 
 
 class Dashboard extends react.Component{
@@ -25,6 +26,7 @@ class Dashboard extends react.Component{
             username:'',
             email:'',
             contact:'',
+            idError:false,
             usernameError:false,
             emailError:false,
             contactError:false
@@ -66,16 +68,19 @@ class Dashboard extends react.Component{
     }
 
     handleChange = (e) => {
+       
         this.setState({
          [e.target.id]:e.target.value,
          [e.target.username]:e.target.value,
          [e.target.email]:e.target.value,
          [e.target.contact]:e.target.value
         })
+       
+
     }
 
     componentDidUpdate(){
-       this.getData = () => {
+        this.getData = () => {
             axios.post('http://localhost:3001/Profiles',this.state)
             .then((response)=>{
             console.log(response);
@@ -88,25 +93,53 @@ class Dashboard extends react.Component{
         })
     }
     }
+
+    handleIdFocus = () => {
+        this.setState({
+            idError:false
+        });
+    }
+    handleUsernameFocus = () => {
+        this.setState({
+            usernameError:false
+        });
+    }
+    handleEmailFocus = () => {
+        this.setState({
+            emailError:false
+        });
+    }
+    handleContactFocus = () => {
+        this.setState({
+            contactError:false
+        });
+    }
+
    
    handleSubmit = () => {
-        if(!validUsername.test(this.state.username)){
+    if(!validId.test(this.state.id) == true){
+        this.setState({
+            idError:true
+        });
+    }
+        if(!validUsername.test(this.state.username) == true){
             this.setState({
                 usernameError:true
             });
         }
-        if(!validEmail.test(this.state.email)){
+        if(!validEmail.test(this.state.email) == true){
             this.setState({
                 emailError:true
             });
         }
-        if(!validContact.test(this.state.contact)){
+        if(!validContact.test(this.state.contact) == true){
             this.setState({
                 contactError:true
             });
         }
-        if(this.state.usernameError == true && this.state.emailError == true && this.state.contactError == true){   
+        if(this.state.idError == true && this.state.usernameError == true && this.state.emailError == true && this.state.contactError == true){   
           this.getData();
+       
         }
         this.setState({
             id:'',
@@ -115,7 +148,7 @@ class Dashboard extends react.Component{
             contact:'',
         })
     }
-    
+   
     
 
     render(){
@@ -135,7 +168,6 @@ class Dashboard extends react.Component{
         <DialogTitle>Add Profile</DialogTitle>
         <DialogContent>
           <TextField
-            autoFocus
             margin="dense"
             id="id"
             label="Id"
@@ -144,9 +176,10 @@ class Dashboard extends react.Component{
             variant="standard"
             value={this.state.id}
             onChange={this.handleChange}
+            onFocus= {this.handleIdFocus}
           />
+           {this.state.idError ? <p>id is invalid!</p> : <p></p>}
            <TextField
-            autoFocus
             margin="dense"
             id="username"
             label="Username"
@@ -155,10 +188,10 @@ class Dashboard extends react.Component{
             variant="standard"
             value={this.state.username}
             onChange={this.handleChange}
+            onFocus={this.handleUsernameFocus}
           />
-           {this.state.usernameError && <p>usename is invalid!</p>}
+           {this.state.usernameError ? <p>username is invalid!</p> : <p></p>}
            <TextField
-            autoFocus
             margin="dense"
             id="email"
             label="Email"
@@ -167,10 +200,10 @@ class Dashboard extends react.Component{
             variant="standard"
             value={this.state.email}
             onChange={this.handleChange}
+            onFocus={this.handleEmailFocus}
           />
-           {this.state.emailError && <p>Email is invalid!</p>}
+            {this.state.emailError ? <p>email is invalid!</p> : <p></p>}
            <TextField
-            autoFocus
             margin="dense"
             id="contact"
             label="Contact"
@@ -179,8 +212,9 @@ class Dashboard extends react.Component{
             variant="standard"
             value={this.state.contact}
             onChange={this.handleChange}
+            onFocus={this.handleContactFocus}
           />
-           {this.state.contactError && <p>contact is invalid!</p>}
+            {this.state.contactError ? <p>contact is invalid!</p> : <p></p>}
         </DialogContent>
         <DialogActions>
           <Button onClick={() => this.handleClose()}>Cancel</Button>

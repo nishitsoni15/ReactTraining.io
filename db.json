@@ -3,31 +3,31 @@
     {
       "id": 1,
       "username": "Nishit",
-      "email":"soninishit15@gmail.com",
+      "email": "soni.nishit@successive.tech",
       "contact": 8866739445
     },
     {
       "id": 2,
       "username": "Ravi",
-      "email":"soninishit15@gmail.com",
+      "email": "ravi@gmail.com",
       "contact": 8866739445
     },
     {
       "id": 3,
       "username": "Shubham",
-      "email":"soninishit15@gmail.com",
+      "email": "soninishit15@gmail.com",
       "contact": 8866739445
     },
     {
       "id": 4,
       "username": "Shivam",
-      "email":"soninishit15@gmail.com",
+      "email": "soninishit15@gmail.com",
       "contact": 8866739445
     },
     {
       "id": 5,
       "username": "Abhi",
-      "email":"soninishit15@gmail.com",
+      "email": "soninishit15@gmail.com",
       "contact": 8866739445
     },
     {
@@ -36,7 +36,7 @@
       "show": true,
       "id": "6",
       "username": "Abhi Soni",
-      "email":"soninishit15@gmail.com",
+      "email": "soninishit15@gmail.com",
       "contact": "687878987988",
       "usernameError": true,
       "placeError": true,
